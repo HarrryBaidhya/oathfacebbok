@@ -1,0 +1,45 @@
+﻿@model DesignFirstApproachCrud.Models.Student
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Student Details</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.StudentName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.StudentName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Marks)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Marks)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        <a href="@Url.Action("Edit", "Students", new { id = Model.StudentId })">
+            <i class="fa fa-edit btn btn-info btn-sm"></i>
+        </a> |
+        <a href="@Url.Action("Index", "Students")"><i class="btn btn-warning btn-sm">Back</i></a>
+
+    </p>
+</body>
+</html>

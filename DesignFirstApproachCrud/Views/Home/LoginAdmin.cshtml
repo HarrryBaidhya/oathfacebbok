@@ -1,0 +1,117 @@
+﻿@model DesignFirstApproachCrud.Models.AdminUser
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Core Wallet | Log In</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link href="~/Content/css/icheck-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/Sarojstyle.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/Styles.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/adminlte.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Font/all.min.css" rel="stylesheet" type="text/css" />
+  
+
+    <style>
+        .login-page {
+            height: 90vh;
+        }
+
+        .login-box {
+            width: 400px;
+        }
+    </style>
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="card card-outline card-danger">
+            <div class="card-header text-center">
+                <a href="#" class="h1">
+                    <img src="~/Content/img/user8-128x128.jpg" alt="AdminPanel" style="height: 50px;">
+                </a>
+            </div>
+            <div class="card-body">
+                <p class="login-box-msg">Log In to start your session</p>
+                @using (Html.BeginForm("Index1", "Home", new { }, FormMethod.Post, new { @role = "form", @id = "loginform" }))
+                {
+                    @Html.AntiForgeryToken()
+                    if (TempData != null && TempData.ContainsKey("msg") != false)
+                    {
+                        <span class="error-signup">@Html.Raw(TempData["msg"])</span>
+                    }
+                    <div class="input-group mb-3">
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Username" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fa fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group login-input mb-3">
+                        @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @type = "password", @maxlength = "16", @placeholder = "Password", @id = "Password" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-eye" id="passEye" onclick="togglePassword()"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-8">
+                        </div>
+                        <div class="col-4">
+                            <p><a href="@ViewBag.Url" class=""btn btn-primary btn-block>Login With Facebook</a></p>
+                           @* <button type="submit" class="btn btn-primary btn-block">Log In</button>*@
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/js/jquery.min.js"></script>
+    <script src="~/Content/js/jquery.validate.min.js"></script>
+    <script src="~/Content/js/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        function togglePassword() {
+            var input = document.getElementById("Password");
+            var eyecon = document.getElementById("passEye");
+            if (input.type === "password") {
+                input.type = "text";
+                eyecon.classList.remove("fa-eye")
+                eyecon.classList.add("fa-eye-slash")
+
+            } else {
+                input.type = "password";
+                eyecon.classList.remove("fa-eye-slash")
+                eyecon.classList.add("fa-eye")
+            }
+        }
+
+        function toggleAccessCode() {
+            var input = document.getElementById("AccessCode");
+            var eyecon = document.getElementById("passEye1");
+            if (input.type === "password") {
+                input.type = "text";
+                eyecon.classList.remove("fa-eye")
+                eyecon.classList.add("fa-eye-slash")
+
+            } else {
+                input.type = "password";
+                eyecon.classList.remove("fa-eye-slash")
+                eyecon.classList.add("fa-eye")
+            }
+        }
+        $('input[type=password]').on('paste', e => e.preventDefault());
+    </script>
+</body>
+</html>

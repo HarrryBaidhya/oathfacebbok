@@ -1,0 +1,63 @@
+﻿@model DesignFirstApproachCrud.Models.Student
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Update</title>
+</head>
+<body>
+    <h4>Student Update</h4>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <hr />
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.StudentId)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.StudentName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-8">
+            @Html.EditorFor(model => model.StudentName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.StudentName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Marks, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-8">
+            @Html.EditorFor(model => model.Marks, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Marks, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- 2 column grid layout for inline styling -->
+    <div class="row mb-6">
+        <div class="col d-flex justify-content-center">
+            <!-- Checkbox -->
+            <div class="form-group">
+                <div class="col-md-6">
+                    <input type="submit" value="Update" class="btn btn-success btn-sm" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <a href="@Url.Action("Index", "Students")"><i class="btn btn-warning btn-sm">Back</i></a>
+        </div>
+    </div>
+</div>
+            }
+    </body>
+</html>
+
+
+
