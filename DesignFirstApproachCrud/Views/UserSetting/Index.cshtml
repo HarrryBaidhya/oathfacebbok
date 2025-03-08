@@ -1,0 +1,69 @@
+﻿@model IEnumerable<DesignFirstApproachCrud.Models.UserSetting>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    @*<a href="@Url.Action("Create", "Students")"><i class="btn btn-success btn-sm">Create</i></a>*@
+    <br />
+    <br />
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobileNo)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MobileNo)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "Students", new { id = item.UserId })">
+                        <i class="fa fa-edit btn btn-info btn-sm"></i>
+                    </a> |
+                    <a href="@Url.Action("Details", "Students", new { id = item.UserId })">
+                        <i class="btn btn-warning btn-sm">Details</i>
+                    </a> |
+                    <a href="@Url.Action("ResetPassword", "UserSetting", new { id = item.UserId })">
+                        <i class="fa fa-edit btn btn-info btn-sm">Reset Password</i>
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>
+
